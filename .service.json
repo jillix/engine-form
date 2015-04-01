@@ -1,0 +1,11 @@
+{
+    "client": {
+        "methods": {
+            "fill": {},
+            "submit": {}
+        },
+        "emits": {
+            "data": {}
+        }
+    }
+}
