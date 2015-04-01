@@ -7,7 +7,9 @@
   },
   "components": {
     "scripts": [
-      "client/index.js"
+      "client/index.js",
+      "client/jQuery-form-serializer.js",
+      "/libs/jQuery"
     ]
   },
   "repository": {
