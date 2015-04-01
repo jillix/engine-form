@@ -9,7 +9,7 @@
     "scripts": [
       "client/index.js",
       "client/jQuery-form-serializer.js",
-      "/libs/jQuery"
+      "/libs/jquery.js"
     ]
   },
   "repository": {
