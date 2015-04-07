@@ -28,7 +28,7 @@ exports.init = function () {
     $container.serializer();
 
     $("form", $container).on("serializer:data", function (_, formData) {
-        self.emit("data", formData);
+        self.emit("data", null, formData);
     });
 };
 
