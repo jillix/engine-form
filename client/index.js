@@ -27,8 +27,10 @@ exports.init = function () {
     var $container = $(self._config.form || "body");
     $container.serializer();
 
-    $("form", $container).on("serializer:data", function (_, formData) {
-        self.emit("data", null, formData);
+    $container.on("serializer:data", "form", function (_, formData) {
+        var data = $(this).data();
+        data.formData = formData;
+        self.emit("data", null, data);
     });
 };
 
@@ -44,9 +46,10 @@ exports.init = function () {
  */
 exports.fill = function (ev, data) {
     var $elm = getForm(ev, data);
-    if ($elm.length) {
+    if (!$elm.length) {
         return console.warn("Cannot find the form element.");
     }
+    $elm.data(data);
     $elm.trigger("serializer:fill", [data.data]);
 };
 
@@ -62,7 +65,7 @@ exports.fill = function (ev, data) {
  */
 exports.submit = function (ev, data) {
     var $elm = getForm(ev, data);
-    if ($elm.length) {
+    if (!$elm.length) {
         return console.warn("Cannot find the form element.");
     }
     $elm.trigger("serializer:submit");

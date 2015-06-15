@@ -1,6 +1,6 @@
 {
   "name": "engine-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Form module for Engine.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,10 +21,21 @@
     "file",
     "system"
   ],
-  "author": "jillix <contact@jillix.com>",
+  "author": {
+    "name": "jillix",
+    "email": "contact@jillix.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jillix/engine-form/issues"
   },
-  "homepage": "https://github.com/jillix/engine-form"
+  "homepage": "https://github.com/jillix/engine-form",
+  "gitHead": "c26295b9bb7b4d9134a763b118addf08dfd8563a",
+  "readme": "# engine-form\nForm module for Engine.\n\n## Documentation\n### `fill(ev, data)`\nFills a form with data provided in `data.data`.\n\n#### Params\n- **Event** `ev`: The event object.\n- **Object** `data`: The data object.\n\n### `submit(ev, data)`\nRequest a submit event from form serializer.\n\n#### Params\n- **Event** `ev`: The event object.\n- **Object** `data`: The data object.\n\n## How to contribute\n1. File an issue in the repository, using the bug tracker, describing the\n   contribution you'd like to make. This will help us to get you started on the\n   right foot.\n2. Fork the project in your account and create a new branch:\n   `your-great-feature`.\n3. Commit your changes in that branch.\n4. Open a pull request, and reference the initial issue in the pull request\n   message.\n\n## License\nSee the [LICENSE](./LICENSE) file.\n",
+  "readmeFilename": "README.md",
+  "_id": "engine-form@1.0.0",
+  "_shasum": "561b92a69dd29625173a5cef1c03ae38038f13a4",
+  "_from": "git://github.com/jillix/engine-form.git",
+  "_resolved": "git://github.com/jillix/engine-form.git#c26295b9bb7b4d9134a763b118addf08dfd8563a",
+  "_fromGithub": true
 }
