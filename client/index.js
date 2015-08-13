@@ -7,12 +7,11 @@ var $ = require("/libs/jquery");
  *
  * @name getForm
  * @function
- * @param {Event} ev The event object.
  * @param {Object} data The data object.
  * @return {jQuery} The jQuery form element.
  */
-function getForm(ev, data) {
-    return (ev && ev.target && $(ev.target)) || (data.sel && $(data.sel));
+function getForm(data) {
+    return (data.event && data.event.target && $(data.event.target)) || (data.sel && $(data.sel));
 }
 
 /*!
@@ -27,10 +26,12 @@ exports.init = function () {
     var $container = $(self._config.form || "body");
     $container.serializer();
 
+    self._dataStream = self.flow("data");
+
     $container.on("serializer:data", "form", function (_, formData) {
         var data = $(this).data();
         data.formData = formData;
-        self.emit("data", null, data);
+        self._dataStream.write(null, data);
     });
 };
 
@@ -44,7 +45,7 @@ exports.init = function () {
  * @param {Object} data The data object.
  * @return {undefined}
  */
-exports.fill = function (ev, data) {
+exports.fill = function (data) {
     var $elm = getForm(ev, data);
     if (!$elm.length) {
         return console.warn("Cannot find the form element.");
@@ -59,7 +60,6 @@ exports.fill = function (ev, data) {
  *
  * @name submit
  * @function
- * @param {Event} ev The event object.
  * @param {Object} data The data object.
  * @return {undefined}
  */
