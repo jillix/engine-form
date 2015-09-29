@@ -3,15 +3,18 @@ var $ = require("/libs/jquery");
 
 /*!
  * getForm
- * Returns the form element.
+ * Returns the form element (by default the form which was initialized in init).
  *
  * @name getForm
  * @function
- * @param {Object} data The data object.
+ * @param {Object} data The data object:
+ *
+ *  - `form` (jQuery|QuerySelector): The jQuery element or the query selector.
+ *
  * @return {jQuery} The jQuery form element.
  */
 function getForm(data) {
-    return (data.event && data.event.target && $(data.event.target)) || (data.sel && $(data.sel));
+    return data.form && $(data.form) || this.form;
 }
 
 /*!
@@ -19,19 +22,18 @@ function getForm(data) {
  *
  * @name init
  * @function
- * @return {undefined}
  */
 exports.init = function () {
     var self = this;
     var $container = $(self._config.form || "body");
-    $container.serializer();
 
-    self._dataStream = self.flow("data");
+    self.form = $container;
+    $container.serializer();
 
     $container.on("serializer:data", "form", function (_, formData) {
         var data = $(this).data();
         data.formData = formData;
-        self._dataStream.write(null, data);
+        self.flow("data").write(null, data);
     });
 };
 
@@ -41,12 +43,14 @@ exports.init = function () {
  *
  * @name fill
  * @function
- * @param {Event} ev The event object.
  * @param {Object} data The data object.
- * @return {undefined}
+ *
+ *  - `data` (Object): The form data.
+ *  - `form` (jQuery|QuerySelector): The jQuery element or the query selector.
+ *
  */
 exports.fill = function (data) {
-    var $elm = getForm(ev, data);
+    var $elm = getForm.call(this, data);
     if (!$elm.length) {
         return console.warn("Cannot find the form element.");
     }
@@ -61,10 +65,13 @@ exports.fill = function (data) {
  * @name submit
  * @function
  * @param {Object} data The data object.
- * @return {undefined}
+ *
+ *  - `data` (Object): The form data.
+ *  - `form` (jQuery|QuerySelector): The jQuery element or the query selector.
+ *
  */
-exports.submit = function (ev, data) {
-    var $elm = getForm(ev, data);
+exports.submit = function (data) {
+    var $elm = getForm.call(this, data);
     if (!$elm.length) {
         return console.warn("Cannot find the form element.");
     }
