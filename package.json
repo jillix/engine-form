@@ -14,6 +14,14 @@
       ]
     }
   },
+  "blah": {
+    "streams": {
+      "data": "The form data object."
+    },
+    "ex_config": {
+      "form": "form.my-form"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:jillix/engine-form.git"
