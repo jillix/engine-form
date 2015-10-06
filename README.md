@@ -13,8 +13,7 @@
 <!-- * * * Thanks! * * *                                                    -->
 <!---------------------------------------------------------------------------->
 
-# engine-form [![Donate now][donate-now]][paypal-donations]
-
+# engine-form
 Form module for Engine.
 
 If you're looking for the JavaScript library which is beyond the scences, [there you go](https://github.com/jillix/jQuery-form-serializer)!
