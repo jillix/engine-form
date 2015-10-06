@@ -14,7 +14,7 @@ var $ = require("/libs/jquery");
  * @return {jQuery} The jQuery form element.
  */
 function getForm(data) {
-    return data.form && $(data.form) || this.form;
+    return data && data.form && $(data.form) || this.form;
 }
 
 /*!
@@ -27,12 +27,11 @@ exports.init = function () {
     var self = this;
     var $container = $(self._config.form || "body");
 
-    self.form = $container;
-    $container.serializer();
+    self.form = $container.serializer();
 
-    $container.on("serializer:data", "form", function (_, formData) {
+    self.form.on("serializer:data", function (_, formData) {
         var data = $(this).data();
-        data.formData = formData;
+        self.formData = formData;
         self.flow("data").write(null, data);
     });
 };
@@ -76,4 +75,5 @@ exports.submit = function (data) {
         return console.warn("Cannot find the form element.");
     }
     $elm.trigger("serializer:submit");
+    return this.formData;
 };
